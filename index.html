@@ -281,6 +281,30 @@
             width: 90%;
             max-height: 90vh;
             overflow-y: auto;
+            position: relative;
+        }
+
+        .form-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .form-close:hover {
+            background: #f0f0f0;
+            color: #333;
         }
 
         .form-header {
@@ -424,6 +448,17 @@
 
             .form-modal {
                 padding: 30px 20px;
+                margin: 10px;
+                width: calc(100% - 20px);
+                max-height: calc(100vh - 40px);
+            }
+
+            .form-close {
+                top: 10px;
+                right: 15px;
+                font-size: 28px;
+                width: 44px;
+                height: 44px;
             }
 
             .company-details {
@@ -516,6 +551,7 @@
     <!-- Contact Form Modal -->
     <div class="form-container" id="formModal">
         <div class="form-modal">
+            <button class="form-close" onclick="closeForm()">×</button>
             <div class="form-header">
                 <h2>Demande de Template</h2>
                 <p>Remplissez ce formulaire pour obtenir le template sélectionné</p>
@@ -527,27 +563,27 @@
 
             <form id="contactForm" action="https://formspree.io/f/xeozbkbq" method="POST">
                 <div class="form-group">
-                    <label for="templateName">Template Sélectionné *</label>
+                    <label for="templateName">Template Sélectionné</label>
                     <input type="text" id="templateName" name="template" readonly>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Adresse Email (optionnel)</label>
-                    <input type="email" id="email" name="email" placeholder="votre@email.com">
+                    <label for="email">Adresse Email</label>
+                    <input type="email" id="email" name="email" placeholder="votre@email.com" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="name">Nom (optionnel)</label>
+                    <label for="name">Nom</label>
                     <input type="text" id="name" name="name" placeholder="Votre nom">
                 </div>
 
                 <div class="form-group">
-                    <label for="phone">Numéro de Téléphone (optionnel)</label>
+                    <label for="phone">Numéro de Téléphone</label>
                     <input type="tel" id="phone" name="phone" placeholder="+212 6XX XXX XXX">
                 </div>
 
                 <div class="form-group">
-                    <label for="message">Message Supplémentaire (optionnel)</label>
+                    <label for="message">Message Supplémentaire</label>
                     <textarea id="message" name="message" rows="4" placeholder="Ajoutez des détails sur votre projet..."></textarea>
                 </div>
 
