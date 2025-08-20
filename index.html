@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+.template-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .template-card:hover .template-image img {
+            transform: scale(1.05);
+        }<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -178,29 +187,6 @@
             background: #f0f0f0;
             position: relative;
             overflow: hidden;
-        }
-
-        .template-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .template-card:hover .template-image img {
-            transform: scale(1.05);
-        }
-
-        .category-tag {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: #f39c12;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
         }
 
         .template-content {
@@ -581,7 +567,7 @@
 
                 <div class="form-group">
                     <label for="phone">Numéro de Téléphone</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+212 6XX XXX XXX">
+                    <input type="tel" id="phone" name="phone" placeholder="">
                 </div>
 
                 <div class="form-group">
@@ -694,7 +680,6 @@
                 card.innerHTML = `
                     <div class="template-image">
                         <img src="${imageUrl}" alt="${template.name}" loading="lazy">
-                        <div class="category-tag">${template.category}</div>
                     </div>
                     <div class="template-content">
                         <h3 class="template-title">${template.name}</h3>
