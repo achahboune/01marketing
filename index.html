@@ -342,6 +342,13 @@
             border-color: #3498db;
         }
 
+        .template-selected {
+            background: #3498db !important;
+            color: white !important;
+            border-color: #3498db !important;
+            font-weight: 600;
+        }
+
         .form-actions {
             display: flex;
             gap: 15px;
@@ -551,7 +558,7 @@
     <!-- Contact Form Modal -->
     <div class="form-container" id="formModal">
         <div class="form-modal">
-            <button class="form-close" onclick="closeForm()">×</button>
+            <button class="form-close" onclick="closeForm()" type="button">×</button>
             <div class="form-header">
                 <h2>Demande de Template</h2>
                 <p>Remplissez ce formulaire pour obtenir le template sélectionné</p>
@@ -564,12 +571,7 @@
             <form id="contactForm" action="https://formspree.io/f/xeozbkbq" method="POST">
                 <div class="form-group">
                     <label for="templateName">Template Sélectionné</label>
-                    <input type="text" id="templateName" name="template" readonly>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Adresse Email</label>
-                    <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                    <input type="text" id="templateName" name="template" readonly class="template-selected">
                 </div>
 
                 <div class="form-group">
@@ -580,6 +582,11 @@
                 <div class="form-group">
                     <label for="phone">Numéro de Téléphone</label>
                     <input type="tel" id="phone" name="phone" placeholder="+212 6XX XXX XXX">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Adresse Email</label>
+                    <input type="email" id="email" name="email" placeholder="votre@email.com" required>
                 </div>
 
                 <div class="form-group">
@@ -747,8 +754,7 @@
                 grid.appendChild(card);
             });
 
-            // Scroll to top after filtering to show filtered results
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Remove automatic scroll - let user scroll manually
         }
 
         // Open form with selected template
