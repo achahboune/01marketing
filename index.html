@@ -807,7 +807,7 @@
                         <h3 class="template-title">${template.name}</h3>
                         <p class="template-tagline">${template.tagline}</p>
                         <div class="template-actions">
-                            <a href="${template.url}" target="_blank" class="btn btn-primary">Voir le Template</a>
+                            <button class="btn btn-primary" onclick="openTemplateModal('${template.url}', '${template.name}')">Voir le Template</button>
                             <button class="btn btn-secondary" onclick="selectTemplate('${template.name}')">Sélectionner</button>
                         </div>
                     </div>
