@@ -6,20 +6,17 @@
     <title>Templates Professionnels - 01Marketing</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: #1a202c;
             background: #fff;
         }
-
         /* Header Section */
         .header {
             background: #1a202c;
@@ -27,16 +24,13 @@
             text-align: center;
             padding: 100px 20px;
         }
-
         .header-content {
             max-width: 800px;
             margin: 0 auto;
         }
-
         .logo {
             width: 60px;
             height: 60px;
-            background: #d4af37;
             border-radius: 12px;
             margin: 0 auto 25px;
             display: flex;
@@ -45,18 +39,16 @@
             font-size: 28px;
             font-weight: bold;
         }
-
         .header h1 {
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 15px;
         }
-        
+
         .header h1 span {
             color: #d4af37;
         }
-
-        .header p {
+        .header P {
             font-size: 1.1rem;
             margin-bottom: 30px;
             color: #a0aec0;
@@ -64,7 +56,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         .features {
             display: flex;
             justify-content: center;
@@ -72,19 +63,16 @@
             flex-wrap: wrap;
             color: #a0aec0;
         }
-
         .feature {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 0.9rem;
         }
-
         .feature::before {
             content: '✓';
             color: #d4af37;
         }
-
         /* Navigation */
         .nav-container {
             background: white;
@@ -94,20 +82,17 @@
             z-index: 100;
             border-bottom: 1px solid #e2e8f0;
         }
-
         .nav {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
         .filter-buttons {
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
         }
-
         .filter-btn {
             padding: 10px 20px;
             border: 1px solid #e2e8f0;
@@ -121,31 +106,27 @@
             align-items: center;
             gap: 8px;
         }
-
         .filter-btn:hover {
             background: #f7fafc;
             border-color: #cbd5e0;
         }
-        
+
         .filter-btn.active {
             background: #d4af37;
             color: white;
             border-color: #d4af37;
         }
-
         /* Main Content */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 60px 20px;
         }
-
         .templates-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
             gap: 30px;
         }
-
         .template-card {
             background: white;
             border-radius: 12px;
@@ -153,25 +134,22 @@
             border: 1px solid #e2e8f0;
             transition: all 0.3s ease;
         }
-
         .template-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
         }
-
         .template-image {
             width: 100%;
             height: 220px;
             position: relative;
             overflow: hidden;
         }
-
         .template-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
+
         .category-tag {
             position: absolute;
             top: 15px;
@@ -183,11 +161,9 @@
             font-size: 0.8rem;
             font-weight: 500;
         }
-
         .template-content {
             padding: 20px;
         }
-
         .template-title {
             font-size: 1.25rem;
             font-weight: 600;
@@ -195,19 +171,16 @@
             color: #1a202c;
             text-transform: capitalize;
         }
-
         .template-tagline {
             color: #718096;
             font-size: 0.9rem;
             margin-bottom: 20px;
             min-height: 40px;
         }
-
         .template-actions {
             display: flex;
             gap: 10px;
         }
-
         .btn {
             flex: 1;
             padding: 12px 20px;
@@ -219,28 +192,23 @@
             transition: all 0.3s ease;
             font-size: 0.9rem;
         }
-
         .btn-primary {
             background: #d4af37;
             color: white;
             border: 1px solid #d4af37;
         }
-
         .btn-primary:hover {
             background: #c09d2e;
         }
-
         .btn-secondary {
             background: white;
             color: #4a5568;
             border: 1px solid #e2e8f0;
         }
-
         .btn-secondary:hover {
             background: #f7fafc;
             border-color: #cbd5e0;
         }
-
         /* Modal Styles */
         .form-container {
             display: none;
@@ -254,7 +222,6 @@
             justify-content: center;
             align-items: center;
         }
-
         .form-modal, .template-preview-modal {
             background: white;
             border-radius: 12px;
@@ -262,13 +229,12 @@
             max-height: 90vh;
             overflow-y: auto;
         }
-        
+
         .form-modal {
             padding: 40px;
             max-width: 500px;
             width: 90%;
         }
-
         .form-close {
             position: absolute;
             top: 15px;
@@ -286,12 +252,10 @@
             justify-content: center;
             transition: all 0.3s ease;
         }
-
         .form-close:hover {
             background: #f7fafc;
             color: #1a202c;
         }
-
         .template-preview-modal {
             padding: 0;
             width: 95%;
@@ -300,7 +264,6 @@
             display: flex;
             flex-direction: column;
         }
-
         .template-preview-header {
             background: #1a202c;
             color: white;
@@ -310,30 +273,25 @@
             flex-shrink: 0;
             border-bottom: 1px solid #4a5568;
         }
-
         .template-preview-header h2 {
             margin: 0;
             font-size: 1.2rem;
         }
-
         .template-preview-header .form-close {
             color: white;
         }
-        
+
         .template-preview-header .form-close:hover {
             background: rgba(255,255,255,0.1);
         }
-
         .template-preview-content {
             flex: 1;
         }
-
         .template-preview-content iframe {
             width: 100%;
             height: 100%;
             border: none;
         }
-
         .back-button {
             position: absolute;
             left: 20px;
@@ -347,32 +305,26 @@
             cursor: pointer;
             font-size: 0.9rem;
         }
-
         .back-button:hover {
             background: rgba(255,255,255,0.2);
         }
-
         .form-header {
             text-align: center;
             margin-bottom: 30px;
         }
-
         .form-header h2 {
             color: #1a202c;
             margin-bottom: 10px;
         }
-
         .form-group {
             margin-bottom: 20px;
         }
-
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
             color: #4a5568;
         }
-
         .form-group input, .form-group textarea {
             width: 100%;
             padding: 12px;
@@ -381,24 +333,20 @@
             font-size: 1rem;
             transition: border-color 0.3s ease;
         }
-
         .form-group input:focus, .form-group textarea:focus {
             outline: none;
             border-color: #d4af37;
             box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
         }
-
         .template-selected {
             background: #f7fafc !important;
             font-weight: 600;
         }
-
         .form-actions {
             display: flex;
             gap: 15px;
             margin-top: 30px;
         }
-
         .success-message {
             display: none;
             background: #2f855a;
@@ -408,7 +356,6 @@
             text-align: center;
             margin-bottom: 20px;
         }
-
         /* Footer */
         .footer {
             background: #1a202c;
@@ -416,18 +363,15 @@
             padding: 60px 20px 30px;
             text-align: center;
         }
-
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
         }
-
         .company-info h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
             color: #d4af37;
         }
-
         .company-details {
             display: flex;
             justify-content: center;
@@ -435,17 +379,15 @@
             flex-wrap: wrap;
             margin-bottom: 30px;
         }
-
         .detail-item {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        
+
         .footer p {
             font-size: 0.9rem;
         }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .header h1 {
@@ -461,7 +403,7 @@
     <!-- Header Section -->
     <header class="header">
         <div class="header-content">
-            <div class="logo">P</div>
+            <div class="logo"> </div>
             <h1>Templates <span>Professionnels</span></h1>
             <p>Découvrez notre collection de templates élégants, conçus spécialement pour les cafés, restaurants, salons de coiffure et instituts de beauté.</p>
             <div class="features">
@@ -471,7 +413,6 @@
             </div>
         </div>
     </header>
-
     <!-- Navigation -->
     <nav class="nav-container">
         <div class="nav">
@@ -494,14 +435,12 @@
             </div>
         </div>
     </nav>
-
     <!-- Main Content -->
     <main class="container">
         <div class="templates-grid" id="templatesGrid">
             <!-- Templates will be generated by JavaScript -->
         </div>
     </main>
-
     <!-- Template Preview Modal -->
     <div class="form-container" id="templateModal" style="display: none;">
         <div class="template-preview-modal">
@@ -515,7 +454,6 @@
             </div>
         </div>
     </div>
-
     <!-- Contact Form Modal -->
     <div class="form-container" id="formModal">
         <div class="form-modal">
@@ -524,37 +462,31 @@
                 <h2>Demande de Template</h2>
                 <p>Remplissez ce formulaire pour obtenir le template sélectionné</p>
             </div>
-            
+
             <div class="success-message" id="successMessage">
                 ✅ Nous vous recontacterons dans les plus brefs délais !
             </div>
-
             <form id="contactForm" action="https://formspree.io/f/xeozbkbq" method="POST">
                 <div class="form-group">
                     <label for="templateName">Template Sélectionné</label>
                     <input type="text" id="templateName" name="template" readonly class="template-selected">
                 </div>
-
                 <div class="form-group">
                     <label for="name">Nom</label>
                     <input type="text" id="name" name="name" placeholder="Votre nom">
                 </div>
-
                 <div class="form-group">
                     <label for="phone">Numéro de Téléphone</label>
                     <input type="tel" id="phone" name="phone" placeholder="+212 6XX XXX XXX">
                 </div>
-
                 <div class="form-group">
                     <label for="email">Adresse Email</label>
                     <input type="email" id="email" name="email" placeholder="votre@email.com" required>
                 </div>
-
                 <div class="form-group">
                     <label for="message">Message Supplémentaire</label>
                     <textarea id="message" name="message" rows="4" placeholder="Ajoutez des détails sur votre projet..."></textarea>
                 </div>
-
                 <div class="form-actions">
                     <button type="button" class="btn btn-secondary" onclick="closeForm()">Annuler</button>
                     <button type="submit" class="btn btn-primary">Envoyer la Demande</button>
@@ -562,10 +494,8 @@
             </form>
         </div>
     </div>
-
     <!-- Scroll to Top Button -->
     <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
@@ -586,7 +516,6 @@
             </div>
         </div>
     </footer>
-
     <script>
         // Template data
         const templates = [
@@ -635,12 +564,10 @@
             { name: 'cavanio', category: 'Barber', image: 'cavanio.jpg', url: 'https://www.temp2.7even.agency/cavanio', tagline: 'Trim. Groom. Impress.' },
             { name: 'hector', category: 'Barber', image: 'hector.jpg', url: 'https://www.temp2.7even.agency/hector', tagline: 'Sharp Look Always' }
         ];
-
         // Generate template cards with all categories shown by default
         function generateTemplateCards() {
             filterTemplates('all');
         }
-
         // Open template in modal instead of new tab
         function openTemplateModal(url, name) {
             document.getElementById('templateModalTitle').textContent = name;
@@ -648,40 +575,32 @@
             document.getElementById('templateModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
-
         // Close template modal
         function closeTemplateModal() {
             document.getElementById('templateModal').style.display = 'none';
             document.getElementById('templateFrame').src = '';
             document.body.style.overflow = 'auto';
         }
-
         // Filter templates and regenerate grid
         function filterTemplates(category) {
             const buttons = document.querySelectorAll('.filter-btn');
             const grid = document.getElementById('templatesGrid');
-
             // Update active button
             buttons.forEach(btn => btn.classList.remove('active'));
             document.querySelector(`[data-category="${category}"]`).classList.add('active');
-
             // Clear current grid
             grid.innerHTML = '';
-
             // Filter templates and regenerate cards
-            const filteredTemplates = category === 'all' 
-                ? templates 
+            const filteredTemplates = category === 'all'
+                ? templates
                 : templates.filter(template => template.category === category);
-
             // Generate cards for filtered templates
             filteredTemplates.forEach(template => {
                 const card = document.createElement('div');
                 card.className = 'template-card';
                 card.setAttribute('data-category', template.category);
-
                 // Use actual template images from your images folder
-                const imageUrl = `images/templates/${template.image}`;
-
+                const imageUrl = `images/${template.image}`;
                 card.innerHTML = `
                     <div class="template-image">
                         <img src="${imageUrl}" alt="${template.name}" loading="lazy">
@@ -695,33 +614,28 @@
                         </div>
                     </div>
                 `;
-
                 grid.appendChild(card);
             });
-
             // Remove automatic scroll - let user scroll manually
         }
-
         // Open form with selected template
         function selectTemplate(templateName) {
             document.getElementById('templateName').value = templateName;
             document.getElementById('formModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
-
         // Close form
         function closeForm() {
             document.getElementById('formModal').style.display = 'none';
             document.body.style.overflow = 'auto';
             document.getElementById('successMessage').style.display = 'none';
         }
-
         // Handle form submission
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
+
             const formData = new FormData(this);
-            
+
             try {
                 const response = await fetch(this.action, {
                     method: 'POST',
@@ -730,7 +644,6 @@
                         'Accept': 'application/json'
                     }
                 });
-
                 if (response.ok) {
                     document.getElementById('successMessage').style.display = 'block';
                     this.reset();
@@ -744,12 +657,10 @@
                 alert('Une erreur est survenue. Veuillez réessayer.');
             }
         });
-
         // Scroll to top functionality
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
         // Show/hide scroll to top button
         window.addEventListener('scroll', function() {
             const scrollTop = document.getElementById('scrollTop');
@@ -759,11 +670,9 @@
                 scrollTop.classList.remove('visible');
             }
         });
-
         // Event listeners
         document.addEventListener('DOMContentLoaded', function() {
             generateTemplateCards();
-
             // Add filter button event listeners
             document.querySelectorAll('.filter-btn').forEach(button => {
                 button.addEventListener('click', function() {
@@ -771,21 +680,18 @@
                     filterTemplates(category);
                 });
             });
-
             // Close modal when clicking outside for template modal
             document.getElementById('templateModal').addEventListener('click', function(e) {
                 if (e.target === this) {
                     closeTemplateModal();
                 }
             });
-
             // Close modal when clicking outside for form modal
             document.getElementById('formModal').addEventListener('click', function(e) {
                 if (e.target === this) {
                     closeForm();
                 }
             });
-
             // Close modal with Escape key
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
@@ -798,7 +704,6 @@
                 }
             });
         });
-
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -808,7 +713,6 @@
                 });
             });
         });
-
         // Add loading animation for images
         document.addEventListener('DOMContentLoaded', function() {
             const images = document.querySelectorAll('.template-image img');
