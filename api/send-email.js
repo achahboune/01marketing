@@ -11,6 +11,7 @@ export default async function handler(req, res) {
 
   const visitorName = name && name.trim() !== "" ? name.trim() : "Visiteur";
 
+  // --- Email Admin ---
   const payloadAdmin = {
     sender: { name: '01Marketing', email: 'contact@01marketing.fr' },
     to: [{ email: 'contact@01marketing.fr', name: '01Marketing' }],
@@ -22,21 +23,22 @@ export default async function handler(req, res) {
                   <p><strong>Message:</strong> ${message || 'N/A'}</p>`
   };
 
+  // --- Email Visiteur ---
   const payloadUser = {
     sender: { name: '01Marketing', email: 'contact@01marketing.fr' },
     to: [{ email, name: visitorName }],
     subject: "✅ Votre demande a bien été reçue",
-    htmlContent: `<p>👋 Bonjour ${visitorName},</p>
-              <p>Merci d’avoir choisi <strong>01MARKETING</strong> 🚀</p>
-              <p>✨ Nous avons bien reçu votre demande concernant le template 
-              <strong>${template}</strong>.</p>
-              <p>Notre équipe va l’examiner avec soin et reviendra vers vous très rapidement ⏳.</p>
-              <p>En attendant, restez connecté(e) et profitez de nos solutions pour booster votre visibilité 📈</p>
-              <br>
-              <p>🤝 Avec toute notre énergie,</p>
-              <p><strong>L’équipe 01MARKETING – Tanger</strong></p>`
-
-`
+    htmlContent: `
+      <p>👋 Bonjour ${visitorName},</p>
+      <p>Merci d’avoir choisi <strong>01MARKETING</strong> 🚀</p>
+      <p>✨ Nous avons bien reçu votre demande concernant le template 
+      <strong>${template}</strong>.</p>
+      <p>Notre équipe va l’examiner avec soin et reviendra vers vous très rapidement ⏳.</p>
+      <p>En attendant, restez connecté(e) et profitez de nos solutions pour booster votre visibilité 📈</p>
+      <br>
+      <p>🤝 Avec toute notre énergie,</p>
+      <p><strong>L’équipe 01MARKETING – Tanger</strong></p>
+    `
   };
 
   try {
