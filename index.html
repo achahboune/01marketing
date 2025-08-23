@@ -236,7 +236,7 @@ function closeForm(){
   document.getElementById('successMessage').style.display='none';
 }
 
-// === Form submission via fetch vers server.js ===
+// === Form submission via fetch vers /api/send-email ===
 document.getElementById('contactForm').addEventListener('submit', async function(e){
   e.preventDefault();
   const template = document.getElementById('templateName').value;
@@ -245,17 +245,20 @@ document.getElementById('contactForm').addEventListener('submit', async function
   const email = document.getElementById('email').value;
   const message = document.getElementById('message').value;
 
-  try{
-    const res = await fetch('/send-email', {
+  try {
+    const res = await fetch('/api/send-email', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ template, name, phone, email, message })
     });
+
     if(res.ok){
       document.getElementById('successMessage').style.display='block';
       this.reset();
-      setTimeout(()=>closeForm(),3000);
-    } else { alert('Erreur, veuillez réessayer'); }
+      setTimeout(() => closeForm(), 3000);
+    } else {
+      alert('Erreur, veuillez réessayer');
+    }
   } catch(err){
     console.error(err);
     alert('Erreur, veuillez réessayer');
@@ -263,14 +266,18 @@ document.getElementById('contactForm').addEventListener('submit', async function
 });
 
 // === Filters ===
-document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',function(){
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  this.classList.add('active');
-  generateTemplateCards(this.getAttribute('data-category'));
-}));
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    generateTemplateCards(this.getAttribute('data-category'));
+  });
+});
 
 // Initialisation
-document.addEventListener('DOMContentLoaded',()=>{ generateTemplateCards(); });
+document.addEventListener('DOMContentLoaded', () => {
+  generateTemplateCards();
+});
 </script>
 </body>
 </html>
