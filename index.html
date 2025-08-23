@@ -69,6 +69,24 @@ body{font-family:'Inter',sans-serif;line-height:1.6;color:#1a202c;background:#ff
 .detail-item{display:flex;align-items:center;gap:10px;}
 .footer p{font-size:0.9rem;}
 @media (max-width:768px){.header h1{font-size:2.5rem;}.templates-grid{grid-template-columns:1fr;}}
+.back-button {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #d4af37; /* doré */
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  z-index: 101;
+}
+.back-button:hover {
+  background: #c09d2e;
+}
+
 </style>
 </head>
 <body>
@@ -89,7 +107,7 @@ body{font-family:'Inter',sans-serif;line-height:1.6;color:#1a202c;background:#ff
 <nav class="nav-container">
   <div class="nav">
     <div class="filter-buttons">
-      <button class="filter-btn active" data-category="all">Tous</button>
+      
       <button class="filter-btn" data-category="Café">Café</button>
       <button class="filter-btn" data-category="Restaurant">Restaurant</button>
       <button class="filter-btn" data-category="Barber">Coiffure & Barbier</button>
@@ -122,7 +140,7 @@ body{font-family:'Inter',sans-serif;line-height:1.6;color:#1a202c;background:#ff
       </div>
       <div class="form-group">
         <label for="phone">Numéro de Téléphone</label>
-        <input type="tel" id="phone" name="phone" placeholder="+212 6XX XXX XXX">
+        <input type="tel" id="phone" name="phone" placeholder="">
       </div>
       <div class="form-group">
         <label for="email">Adresse Email</label>
@@ -203,6 +221,40 @@ const templates = [
             { name: 'hector', category: 'Barber', image: 'hector.jpg', url: 'https://www.temp2.7even.agency/hector', tagline: 'Sharp Look Always' }
         ];
 
+function openTemplateModal(url, name){
+  let modal = document.getElementById('templatePreviewModal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'templatePreviewModal';
+    modal.className = 'form-container';
+    modal.innerHTML = `
+      <div class="template-preview-modal">
+        <div class="template-preview-header">
+          <button class="back-button" onclick="closeTemplateModal()">← Retour</button>
+          <button class="form-close" onclick="closeTemplateModal()">×</button>
+          <h2>${name}</h2>
+        </div>
+        <div class="template-preview-content">
+          <iframe src="${url}" frameborder="0"></iframe>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+  } else {
+    modal.querySelector('iframe').src = url;
+    modal.querySelector('.template-preview-header h2').textContent = name;
+  }
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeTemplateModal(){
+  const modal = document.getElementById('templatePreviewModal');
+  if(modal){
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+}
 
 function generateTemplateCards(category='all'){
   const grid=document.getElementById('templatesGrid');
