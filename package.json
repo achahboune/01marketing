@@ -1,0 +1,31 @@
+{
+  "name": "01marketing",
+  "version": "1.0.0",
+  "description": "Site de templates professionnels avec formulaire de contact via Brevo",
+  "homepage": "https://github.com/achahboune/01marketing#readme",
+  "bugs": {
+    "url": "https://github.com/achahboune/01marketing/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/achahboune/01marketing.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "templates",
+    "marketing",
+    "brevo",
+    "email"
+  ],
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "express": "^4.18.2",
+    "node-fetch": "^2.7.0"
+  }
+}
