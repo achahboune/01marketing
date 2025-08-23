@@ -13,21 +13,33 @@ export default async function handler(req, res) {
 
   // --- Email Admin ---
   const payloadAdmin = {
-    sender: { name: '01Marketing', email: 'contact@01marketing.fr' },
-    to: [{ email: 'contact@01marketing.fr', name: '01Marketing' }],
+    sender: { name: "01Marketing", email: "contact@01marketing.fr" },
+    to: [{ email: "contact@01marketing.fr", name: "01Marketing" }],
     subject: `📩 Nouvelle demande : ${template}`,
+    textContent: `Nouvelle demande reçue
+- Nom: ${name || "N/A"}
+- Email: ${email}
+- Téléphone: ${phone || "N/A"}
+- Message: ${message || "N/A"}`,
     htmlContent: `<h3>Nouvelle demande reçue</h3>
-                  <p><strong>Nom:</strong> ${name || 'N/A'}</p>
+                  <p><strong>Nom:</strong> ${name || "N/A"}</p>
                   <p><strong>Email:</strong> ${email}</p>
-                  <p><strong>Téléphone:</strong> ${phone || 'N/A'}</p>
-                  <p><strong>Message:</strong> ${message || 'N/A'}</p>`
+                  <p><strong>Téléphone:</strong> ${phone || "N/A"}</p>
+                  <p><strong>Message:</strong> ${message || "N/A"}</p>`
   };
 
   // --- Email Visiteur ---
   const payloadUser = {
-    sender: { name: '01Marketing', email: 'contact@01marketing.fr' },
+    sender: { name: "01Marketing", email: "contact@01marketing.fr" },
     to: [{ email, name: visitorName }],
     subject: "✅ Votre demande a bien été reçue",
+    textContent: `Bonjour ${visitorName},
+
+Merci d’avoir choisi 01MARKETING.
+Nous avons bien reçu votre demande concernant le template ${template}.
+Notre équipe va l’examiner avec soin et reviendra vers vous très rapidement.
+
+-- L’équipe 01MARKETING – Tanger`,
     htmlContent: `
       <p>👋 Bonjour ${visitorName},</p>
       <p>Merci d’avoir choisi <strong>01MARKETING</strong> 🚀</p>
@@ -37,20 +49,20 @@ export default async function handler(req, res) {
       <p>En attendant, restez connecté(e) et profitez de nos solutions pour booster votre visibilité 📈</p>
       <br>
       <p>🤝 Avec toute notre énergie,</p>
-      <p><strong>L’équipe 01MARKETING – Tanger</strong></p>
-    `
+      <p><strong>L’équipe 01MARKETING – Tanger</strong></p>`,
+    templateId: null // <-- IMPORTANT pour forcer le contenu HTML/text personnalisé
   };
 
   try {
     const [resAdmin, resUser] = await Promise.all([
-      fetch('https://api.brevo.com/v3/smtp/email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'api-key': process.env.BREVO_API_KEY },
+      fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "api-key": process.env.BREVO_API_KEY },
         body: JSON.stringify(payloadAdmin)
       }),
-      fetch('https://api.brevo.com/v3/smtp/email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'api-key': process.env.BREVO_API_KEY },
+      fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "api-key": process.env.BREVO_API_KEY },
         body: JSON.stringify(payloadUser)
       })
     ]);
