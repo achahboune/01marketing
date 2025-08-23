@@ -1,1 +1,27 @@
-.env 
+# Fichiers de configuration sensibles
+.env
+
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Dossier Vercel local
+.vercel/
+
+# Système
+.DS_Store
+Thumbs.db
+
+# Cache et builds
+dist/
+build/
+*.local
+
+# Front statique temporaire
+*.tmp
+*.bak
