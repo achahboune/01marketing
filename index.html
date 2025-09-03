@@ -452,58 +452,58 @@ scrollUpBtn.addEventListener('click', () => {
 </div>
 
 <script>
-  const chatMessages = document.getElementById("chat-messages");
+ <!-- Bouton flottant -->
+<div id="chatbot-button" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #FFD600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  z-index: 9999;
+">
+  💬
+</div>
 
-  function botReply(text) {
-    let msg = document.createElement("div");
-    msg.className = "msg bot";
-    msg.innerText = text;
-    chatMessages.appendChild(msg);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
+<!-- Fenêtre chatbot (cachée au départ) -->
+<div id="chatbot-window" style="
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 350px;
+  height: 500px;
+  background: #FFFFFF;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 9999;
+">
+  <div style="background:#FFD600; padding:10px; font-weight:bold; text-align:center;">
+    🚖 7even Taxi — Réservation rapide
+  </div>
+  <iframe 
+    src="TON_URL_CHATBOT" 
+    style="flex:1; border:none; width:100%; height:100%;"></iframe>
+</div>
 
-  function userReply(text) {
-    let msg = document.createElement("div");
-    msg.className = "msg user";
-    msg.innerText = text;
-    chatMessages.appendChild(msg);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
+<script>
+  const btn = document.getElementById("chatbot-button");
+  const win = document.getElementById("chatbot-window");
 
-  function sendMessage() {
-    const input = document.getElementById("userInput");
-    const text = input.value.trim();
-    if (!text) return;
-    userReply(text);
-    input.value = "";
-
-    // Réponses simples FAQ
-    if (text.includes("horaire")) {
-      botReply("Nos horaires : Lundi - Vendredi, 9h à 18h.");
-    } else if (text.includes("contact")) {
-      botReply("Vous pouvez nous écrire à contact@monsite.com");
-    } else if (text.includes("prix") || text.includes("tarif")) {
-      botReply("Nos services sont sur devis personnalisé. Voulez-vous laisser vos coordonnées ?");
-    } else {
-      botReply("Je ne suis pas sûr d’avoir compris 🤔. Voulez-vous remplir le formulaire de contact ?");
-    }
-  }
-
-  // Message de bienvenue + FAQ boutons
-  botReply("Bonjour 👋 Je suis là pour vous aider !");
-  let faq1 = document.createElement("button");
-  faq1.className = "faq-btn";
-  faq1.innerText = "Quels sont vos horaires ?";
-  faq1.onclick = () => { userReply(faq1.innerText); botReply("Nos horaires : Lundi - Vendredi, 9h à 18h."); };
-  chatMessages.appendChild(faq1);
-
-  let faq2 = document.createElement("button");
-  faq2.className = "faq-btn";
-  faq2.innerText = "Comment vous contacter ?";
-  faq2.onclick = () => { userReply(faq2.innerText); botReply("Vous pouvez nous écrire à contact@monsite.com"); };
-  chatMessages.appendChild(faq2);
+  btn.addEventListener("click", () => {
+    win.style.display = (win.style.display === "none" || win.style.display === "") 
+      ? "flex" 
+      : "none";
+  });
 </script>
-<!-- Chatbot End -->
 
 </body>
 </html>
