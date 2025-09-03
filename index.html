@@ -370,5 +370,140 @@ scrollUpBtn.addEventListener('click', () => {
 });
 
 </script>
+<!-- Chatbot Start -->
+<style>
+  #chatbot {
+    font-family: Arial, sans-serif;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    max-height: 500px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+  #chat-header {
+    background: #4A90E2;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+  }
+  #chat-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+  .msg {
+    margin: 5px 0;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 80%;
+  }
+  .bot {
+    background: #F5F7FA;
+    color: #333;
+    align-self: flex-start;
+  }
+  .user {
+    background: #4A90E2;
+    color: white;
+    align-self: flex-end;
+  }
+  #chat-input {
+    display: flex;
+    border-top: 1px solid #ddd;
+  }
+  #chat-input input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+  }
+  #chat-input button {
+    background: #4A90E2;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  .faq-btn {
+    background: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 6px 12px;
+    margin: 3px 0;
+    cursor: pointer;
+  }
+</style>
+
+<div id="chatbot">
+  <div id="chat-header">💬 Support en ligne</div>
+  <div id="chat-messages"></div>
+  <div id="chat-input">
+    <input type="text" id="userInput" placeholder="Écrivez un message...">
+    <button onclick="sendMessage()">➤</button>
+  </div>
+</div>
+
+<script>
+  const chatMessages = document.getElementById("chat-messages");
+
+  function botReply(text) {
+    let msg = document.createElement("div");
+    msg.className = "msg bot";
+    msg.innerText = text;
+    chatMessages.appendChild(msg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function userReply(text) {
+    let msg = document.createElement("div");
+    msg.className = "msg user";
+    msg.innerText = text;
+    chatMessages.appendChild(msg);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function sendMessage() {
+    const input = document.getElementById("userInput");
+    const text = input.value.trim();
+    if (!text) return;
+    userReply(text);
+    input.value = "";
+
+    // Réponses simples FAQ
+    if (text.includes("horaire")) {
+      botReply("Nos horaires : Lundi - Vendredi, 9h à 18h.");
+    } else if (text.includes("contact")) {
+      botReply("Vous pouvez nous écrire à contact@monsite.com");
+    } else if (text.includes("prix") || text.includes("tarif")) {
+      botReply("Nos services sont sur devis personnalisé. Voulez-vous laisser vos coordonnées ?");
+    } else {
+      botReply("Je ne suis pas sûr d’avoir compris 🤔. Voulez-vous remplir le formulaire de contact ?");
+    }
+  }
+
+  // Message de bienvenue + FAQ boutons
+  botReply("Bonjour 👋 Je suis là pour vous aider !");
+  let faq1 = document.createElement("button");
+  faq1.className = "faq-btn";
+  faq1.innerText = "Quels sont vos horaires ?";
+  faq1.onclick = () => { userReply(faq1.innerText); botReply("Nos horaires : Lundi - Vendredi, 9h à 18h."); };
+  chatMessages.appendChild(faq1);
+
+  let faq2 = document.createElement("button");
+  faq2.className = "faq-btn";
+  faq2.innerText = "Comment vous contacter ?";
+  faq2.onclick = () => { userReply(faq2.innerText); botReply("Vous pouvez nous écrire à contact@monsite.com"); };
+  chatMessages.appendChild(faq2);
+</script>
+<!-- Chatbot End -->
+
 </body>
 </html>
