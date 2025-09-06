@@ -444,57 +444,52 @@ scrollUpBtn.addEventListener('click', () => {
 
 
 </script>
-<!-- === CHATBOT FLOATING WIDGET === -->
 <div id="chatbot">
-  <div id="chat-header">🤖 Mon Chatbot</div>
-  <div id="chat-messages">
-    <div class="msg bot">Bonjour 👋 Je suis là pour vous aider.</div>
-  </div>
+  <div id="chat-header">Chat Taxi 🚕</div>
+  <div id="chat-messages"></div>
   <div id="chat-input">
-    <input id="userInput" type="text" placeholder="Écrivez un message...">
+    <input type="text" id="userMessage" placeholder="Écris un message..." />
     <button onclick="sendMessage()">Envoyer</button>
   </div>
 </div>
-
 <script>
-async function sendMessage() {
-  const input = document.getElementById("userInput");
-  const chatbox = document.getElementById("chat-messages");
-  const userMessage = input.value.trim();
-  if (!userMessage) return;
+const chatMessages = document.getElementById("chat-messages");
+const input = document.getElementById("userMessage");
 
-  // afficher le message utilisateur
-  const userMsg = document.createElement("div");
-  userMsg.className = "msg user";
-  userMsg.innerText = userMessage;
-  chatbox.appendChild(userMsg);
-  chatbox.scrollTop = chatbox.scrollHeight;
+async function sendMessage() {
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  appendMessage(msg, "user");
   input.value = "";
 
   try {
-    const res = await fetch("https://chatbot-y5qa.onrender.com/chat", {
+    const res = await fetch("http://127.0.0.1:8000/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: userMessage })
+      body: JSON.stringify({ message: msg })
     });
-
-    if (!res.ok) throw new Error("Serveur non dispo");
     const data = await res.json();
-
-    const botMsg = document.createElement("div");
-    botMsg.className = "msg bot";
-    botMsg.innerText = data.response || "Désolé, je n’ai pas compris.";
-    chatbox.appendChild(botMsg);
-    chatbox.scrollTop = chatbox.scrollHeight;
+    appendMessage(data.response, "bot");
   } catch (err) {
-    const errMsg = document.createElement("div");
-    errMsg.className = "msg bot";
-    errMsg.style.color = "red";
-    errMsg.innerText = "⚠️ Erreur: serveur injoignable.";
-    chatbox.appendChild(errMsg);
+    appendMessage("Erreur: impossible de joindre le serveur.", "bot");
+    console.error(err);
   }
 }
+
+function appendMessage(msg, sender) {
+  const div = document.createElement("div");
+  div.className = "msg " + sender;
+  div.textContent = msg;
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Envoi avec Enter
+input.addEventListener("keypress", e => {
+  if (e.key === "Enter") sendMessage();
+});
 </script>
-<!-- === END CHATBOT WIDGET === -->
+
 </body>
 </html>
