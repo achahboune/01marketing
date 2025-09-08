@@ -456,43 +456,43 @@ scrollUpBtn.addEventListener('click', () => {
     </div>
   </div>
 
- <script>
-    const chatMessages = document.getElementById("chat-messages");
-    const input = document.getElementById("userMessage");
-    const API_URL = "https://chatbot-9ftf.onrender.com/chat";
+<script>
+  const chatMessages = document.getElementById("chat-messages");
+  const input = document.getElementById("userMessage");
+  const API_URL = "https://chatbot-9ftf.onrender.com/chat";
 
-    async function sendMessage() {
-      const msg = input.value.trim();
-      if (!msg) return;
+  async function sendMessage() {
+    const msg = input.value.trim();
+    if (!msg) return;
 
-      appendMessage(msg, "user");
-      input.value = "";
+    appendMessage(msg, "user");
+    input.value = "";
 
-      try {
-        const res = await fetch(API_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: msg })
-        });
-        const data = await res.json();
-        appendMessage(data.reply, "bot"); // 🔥 correction ici
-      } catch (err) {
-        appendMessage("Erreur: impossible de joindre le serveur.", "bot");
-        console.error(err);
-      }
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: msg })
+      });
+      const data = await res.json();
+      appendMessage(data.reply, "bot"); // ✅ correction ici
+    } catch (err) {
+      appendMessage("Erreur: impossible de joindre le serveur.", "bot");
+      console.error(err);
     }
+  }
 
-    function appendMessage(msg, sender) {
-      const div = document.createElement("div");
-      div.className = "msg " + sender;
-      div.textContent = msg;
-      chatMessages.appendChild(div);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
+  function appendMessage(msg, sender) {
+    const div = document.createElement("div");
+    div.className = "msg " + sender;
+    div.textContent = msg;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
 
-    input.addEventListener("keypress", e => {
-      if (e.key === "Enter") sendMessage();
-    });
+  input.addEventListener("keypress", e => {
+    if (e.key === "Enter") sendMessage();
+  });
 </script>
 
 </body>
