@@ -456,7 +456,7 @@ scrollUpBtn.addEventListener('click', () => {
     </div>
   </div>
 
-  <script>
+ <script>
     const chatMessages = document.getElementById("chat-messages");
     const input = document.getElementById("userMessage");
     const API_URL = "https://chatbot-9ftf.onrender.com/chat";
@@ -475,7 +475,7 @@ scrollUpBtn.addEventListener('click', () => {
           body: JSON.stringify({ message: msg })
         });
         const data = await res.json();
-        appendMessage(data.response, "bot");
+        appendMessage(data.reply, "bot"); // 🔥 correction ici
       } catch (err) {
         appendMessage("Erreur: impossible de joindre le serveur.", "bot");
         console.error(err);
